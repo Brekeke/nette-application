@@ -528,11 +528,12 @@ abstract class Presenter extends Control implements Application\IPresenter
 	{
 		$name = $this->getName();
 		$presenter = substr($name, strrpos(':' . $name, ':'));
-		$dir = dirname($this->getReflection()->getFileName());
-		$dir = is_dir("$dir/templates") ? $dir : dirname($dir);
+		$presenterDir = dirname($this->getReflection()->getFileName());
+		$dir = is_dir("$presenterDir/templates") ? $presenterDir : dirname($presenterDir);
 		return [
 			"$dir/templates/$presenter/$this->view.latte",
 			"$dir/templates/$presenter.$this->view.latte",
+			"$presenterDir/templates/$this->view.latte",
 		];
 	}
 
